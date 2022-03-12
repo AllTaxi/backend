@@ -1,0 +1,29 @@
+p, any, /documentation/*, GET
+p, unauthorized, /api/users/, GET
+p, unauthorized, /api/users/, POST
+p, unauthorized, /api/devices/, GET
+p, unauthorized, /api/devices/, POST
+p, unauthorized, /api/users/login/, POST
+p, unauthorized, /api/users/reset-password/, POST
+p, unauthorized, /api/media/upload-file/, POST
+p, unauthorized, /api/register/signup/, POST
+p, unauthorized, /api/register/send-email/, POST
+p, unauthorized, /api/verify/, POST
+p, unauthorized, /api/verify/:email/:code/, GET
+p, unauthorized, /api/users/register/, POST
+p, unauthorized, /api/send-code/, POST
+p, user, /api/user/edit-profile/, PUT
+
+p, user, /api/user/subscribe/, POST
+p, user, /api/user/unsubscribe/, POST
+p, user, /api/user/:user_id/subscribers/, GET
+p, user, /api/user/:user_id/subscribings/, GET
+p, user, /api/auth/social/, POST
+
+p, user, /api/user/search-user/, GET
+p, user, /api/post/search-post/, GET
+p, user, /api/user/notifications/get/, GET
+
+g, user, any
+g, unauthorized, any
+g, admin, any

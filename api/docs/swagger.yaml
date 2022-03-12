@@ -1,0 +1,126 @@
+basePath: /api
+definitions:
+  api.request:
+    properties:
+      email:
+        type: string
+    type: object
+  api.response:
+    properties:
+      id:
+        type: string
+    type: object
+  model.User:
+    properties:
+      access_token:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+    type: object
+  model.UserRegister:
+    properties:
+      email:
+        type: string
+      message:
+        type: string
+    type: object
+  model.UserRequest:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+    type: object
+info:
+  contact:
+    email: kholboevdostonbek@gmail.com
+    name: API Support
+    url: https://novalabtech.com/
+  description: This is a sample MONOLITHAPP server.
+  license:
+    name: Apache Licence
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Monolith Sample API
+  version: "1.0"
+paths:
+  /send-code/:
+    post:
+      consumes:
+      - application/json
+      description: Send verification code for a new user.
+      parameters:
+      - description: register
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/api.request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.UserRegister'
+      summary: send verification a new user
+      tags:
+      - register
+  /users/register/:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user.
+      parameters:
+      - description: register
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: creates a new user
+      tags:
+      - register
+  /verify/{email}/{code}/:
+    get:
+      consumes:
+      - application/json
+      description: Verify a user.
+      parameters:
+      - description: email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.response'
+      summary: verify a user
+      tags:
+      - register
+swagger: "2.0"
